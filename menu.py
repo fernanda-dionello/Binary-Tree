@@ -16,7 +16,9 @@ class Menu():
 		3 -	Show Tree Pre-Order
 		4 -	Show Tree Post-Order
 		5 -	Show Tree In-Order 
-		6 -	Exit 
+		6 -	Show Node Journey Pre-Order 
+		7 -	Show Node Journey Post-Order
+		8 -	Exit 
 		
 		========================================
 
@@ -30,7 +32,6 @@ class Menu():
         print('''
                 Incorrect answer. You need to place just numbers.''')
 
-
     def startMenu(self):
         options = {
             0: self.insert,
@@ -39,13 +40,15 @@ class Menu():
             3: self.showTreePreOrder,
             4: self.showTreePostOrder,
             5: self.showTreeInOrder,
+            6: self.showNodeJourneyPreOrder,
+            7: self.showNodeJourneyPostOrder,
         }
         while True:
             try:
                 choice = int(self.options())
-                if 0 <= choice <= 5:
+                if 0 <= choice <= 7:
                     options.get(choice)()
-                elif choice == 6:
+                elif choice == 8:
                     break
                 else:
                     self.invalidChoice()
@@ -97,6 +100,12 @@ class Menu():
     
     def showTreeInOrder(self):
         self.tree.showTreeInOrder(self.tree.getRoot())
+    
+    def showNodeJourneyPreOrder(self):
+        self.tree.printShowTree(self.tree.getRoot(), None)
+    
+    def showNodeJourneyPostOrder(self):
+        self.tree.printShowTreePostOrder(self.tree.getRoot(), None)
     
 
 menu = Menu()

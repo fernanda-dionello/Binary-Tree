@@ -5,16 +5,19 @@ tree = Tree()
 
 ## Test remove when the tree is empty
 print('## Test remove when the tree is empty')
+print('# Try remove 10')
 tree.remove(10)
 print('\n')
 
 ## Test find an element when the tree is empty
 print('## Test find an element when the tree is empty')
+print('# Try to find 100')
 tree.search(100)
 print('\n')
 
 ## Test insert element duplicated
 print('## Test insert element duplicated')
+print('# Try to insert duplicated 10')
 tree.insert(10)
 tree.insert(10)
 print('Tree:')
@@ -23,10 +26,10 @@ print('\n')
 
 ## Test insert
 print('## Test insert elements')
+print('# Insert 5,4,6,15,25,2,28,13,14')
 tree.insert(5)
 tree.insert(4)
 tree.insert(6)
-tree.insert(4)
 tree.insert(15)
 tree.insert(25)
 tree.insert(2)
@@ -39,6 +42,7 @@ print('\n')
 
 ## Test remove when node is not found
 print('## Test remove when node is not found')
+print('# Remove 220')
 tree.remove(220)
 print('Tree:')
 tree.showTree(tree.getRoot())
