@@ -99,4 +99,5 @@ class Menu():
         self.tree.showTreeInOrder(self.tree.getRoot())
     
 
-            
+menu = Menu()
+menu.startMenu()       

@@ -18,6 +18,8 @@ class Tree:
         ##Check if the Tree is empty
         if self.empty(): 
             self.root = node
+        elif self.search(label, False):
+            print("Node already exists, it will not be added!\n")
         else:
             current_node = self.root
             parent_node = None
@@ -45,6 +47,9 @@ class Tree:
             return True
         return False
 
+    def emptyMessage(self):
+        print("The tree is empty!")
+
     #Print the Tree sorted from: root, left, right
     def showTree(self, current_node):
         if self.getRoot() != None:
@@ -53,7 +58,7 @@ class Tree:
                 self.showTree(current_node.getLeft())
                 self.showTree(current_node.getRight())
         else:
-            print('Tree is empty!')
+            self.emptyMessage()
     
     #Print the Tree sorted from: left, right, root
     def showTreePostOrder(self, current_node):
@@ -63,7 +68,7 @@ class Tree:
                 self.showTreePostOrder(current_node.getRight())
                 print('%d' % current_node.getLabel(), end=' ')
         else:
-            print('Tree is empty!')
+            self.emptyMessage()
 
     #Print the Tree sorted from: left, root, right
     def showTreeInOrder(self, current_node):
@@ -73,11 +78,11 @@ class Tree:
                 print('%d' % current_node.getLabel(), end=' ')
                 self.showTreeInOrder(current_node.getRight())
         else:
-            print('Tree is empty!')
+            self.emptyMessage()
 
     def remove(self, label):
         if self.empty():
-            print("The tree is empty")
+            self.emptyMessage()
         else:
             node = Node(label)
             current_node = self.root
@@ -100,10 +105,10 @@ class Tree:
                         if node.getLabel() == self.getRoot().getLabel():
                             self.root = None
                         else:
-                            if parent_node.getLeft().getLabel() == node.getLabel():
-                                parent_node.setLeft(None)
-                            else:
+                            if node.getLabel() > parent_node.getLabel():
                                 parent_node.setRight(None)
+                            else:
+                                parent_node.setLeft(None)
                     
                     # If the Node have 2 children
                     elif current_node.getLeft() != None and current_node.getRight() != None:
@@ -136,21 +141,23 @@ class Tree:
                     current_node = None
                     break
     
-    def search(self, label):
+    def search(self, label, printMessage = True):
 
         ##Check if the Tree is empty
         if self.empty(): 
-            print('Tree is empty!')
+            self.emptyMessage()
         else:
             current_node = self.root
             while True:
                 if current_node == None:
-                    print('Number not found!')
-                    break
+                    if printMessage:
+                        print('Number not found!')
+                    return False
 
                 if current_node.getLabel() == label:
-                    print('Number found: ', label)
-                    break
+                    if printMessage:
+                        print('Number found: ', label)
+                    return True
                 else:
                     if label < current_node.getLabel():
                         current_node = current_node.getLeft()
